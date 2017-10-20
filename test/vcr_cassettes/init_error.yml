@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://sandbox.payture.com/vwapi/Init?DATA=SessionType%253DBlock%253BVWUserLgn%253Duser%2540gmail.com%253BVWUserPsw%253Duser12345%253BIP%253D192.168.0.1%253BOrderId%253Dorder123%253BAmount%253D10000&VWID=TestMerchant
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.12.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 20 Oct 2017 17:00:14 GMT
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '73'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: <Init Success="False" ErrCode="DUPLICATE_ORDER_ID" />
+    http_version:
+  recorded_at: Fri, 20 Oct 2017 17:00:14 GMT
+recorded_with: VCR 2.9.3
