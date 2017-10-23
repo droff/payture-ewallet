@@ -2,16 +2,11 @@
 
 module Payture::Ewallet
   class Config
-    DEFAULT_HOST = 'sandbox.payture.com'
-    DEFAULT_CURRENCY = 'RUB'
-
-    # required with default
-    attr_reader :host
-    attr_reader :currency
-
     # required
+    attr_reader :host
     attr_reader :merchant_id
     attr_reader :password
+    attr_reader :currency
 
     # optional
     attr_reader :logger
@@ -19,10 +14,10 @@ module Payture::Ewallet
     attr_reader :open_timeout
 
     def initialize(**options)
-      @host = options[:host] || DEFAULT_HOST
-      @currency = options[:currency] || DEFAULT_CURRENCY
+      @host = options[:host]
       @merchant_id = options[:merchant_id]
       @password = options[:password]
+      @currency = options[:currency]
       @logger = options[:logger]
       @timeout = options[:timeout]
       @open_timeout = options[:open_timeout]
@@ -37,8 +32,9 @@ module Payture::Ewallet
     private
 
     def check_required_fields!
-      unless merchant_id && password
-        raise ArgumentError, 'Required options: merchant_id, password'
+      unless host && merchant_id && password && currency
+        raise ArgumentError,
+          'Required options: host, merchant_id, password, currency'
       end
     end
   end

@@ -28,8 +28,10 @@ Required options is a `merchant_id` and `password`. You can get them from Paytur
 
 ```ruby
 payture = Payture::Ewallet.client(
+  host: 'sandbox.payture.com',
   merchant_id: 'TestMerchant',
   password: '12345',
+  currency: 'RUB',
 )
 ```
 
@@ -37,10 +39,10 @@ You can also specify optional settings:
 
 ```ruby
 payture = Payture::Ewallet.client(
+  host: 'sandbox.payture.com',
   merchant_id: 'TestMerchant',
   password: '12345',
-  host: 'payture.com', # default is 'sandbox.payture.com'
-  currency: 'EUR',     # default is 'RUB'
+  currency: 'RUB',
   timeout: 10,
   open_timeout: 5,
   logger: Logger.new,

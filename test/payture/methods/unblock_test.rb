@@ -5,8 +5,10 @@ require 'test_helper'
 describe Payture::Ewallet::Methods::Unblock do
   before do
     @client = Payture::Ewallet.client(
+      host: 'sandbox.payture.com',
       merchant_id: 'TestMerchant',
       password: 'merchant12345',
+      currency: 'RUB',
     )
   end
 

@@ -3,55 +3,73 @@
 require 'test_helper'
 
 describe Payture::Ewallet::Client do
-  it 'requires merchant_id' do
-    assert_raises(ArgumentError, 'Required options: merchant_id, password') do
-      Payture::Ewallet.client(password: '123456')
+  describe 'required settings' do
+    it 'requires host' do
+      error_message = 'Required options: host, merchant_id, password, currency'
+      assert_raises(ArgumentError, error_message) do
+        Payture::Ewallet.client(
+          merchant_id: 'TestMerchant',
+          password: '12345',
+          currency: 'RUB',
+        )
+      end
     end
-  end
 
-  it 'requires password' do
-    assert_raises(ArgumentError, 'Required options: merchant_id, password') do
-      Payture::Ewallet.client(merchant_id: 'TestMerchant')
+    it 'requires merchant_id' do
+      error_message = 'Required options: host, merchant_id, password, currency'
+      assert_raises(ArgumentError, error_message) do
+        Payture::Ewallet.client(
+          host: 'sandbox.payture.com',
+          password: '12345',
+          currency: 'RUB',
+        )
+      end
+    end
+
+    it 'requires password' do
+      error_message = 'Required options: host, merchant_id, password, currency'
+      assert_raises(ArgumentError, error_message) do
+        Payture::Ewallet.client(
+          host: 'sandbox.payture.com',
+          merchant_id: 'TestMerchant',
+          currency: 'RUB',
+        )
+      end
+    end
+
+    it 'requires currency' do
+      error_message = 'Required options: host, merchant_id, password, currency'
+      assert_raises(ArgumentError, error_message) do
+        Payture::Ewallet.client(
+          host: 'sandbox.payture.com',
+          merchant_id: 'TestMerchant',
+          password: '12345',
+        )
+      end
     end
   end
 
   describe '#config' do
     it 'returns config with correct params' do
       client = Payture::Ewallet.client(
+        host: 'sandbox.payture.com',
         merchant_id: 'TestMerchant',
         password: '123456',
-      )
-
-      assert_equal 'TestMerchant', client.config.merchant_id
-      assert_equal '123456', client.config.password
-    end
-
-    it 'has default values for host and currency' do
-      client = Payture::Ewallet.client(
-        merchant_id: 'TestMerchant',
-        password: '123456',
+        currency: 'RUB',
       )
 
       assert_equal 'sandbox.payture.com', client.config.host
+      assert_equal 'TestMerchant', client.config.merchant_id
+      assert_equal '123456', client.config.password
       assert_equal 'RUB', client.config.currency
-    end
-
-    it 'overrides default params' do
-      client = Payture::Ewallet.client(
-        merchant_id: 'TestMerchant',
-        password: '123456',
-        host: 'payture.com',
-        currency: 'EUR',
-      )
-
-      assert_equal 'payture.com', client.config.host
-      assert_equal 'EUR', client.config.currency
     end
 
     it 'has optional params' do
       client = Payture::Ewallet.client(
+        host: 'sandbox.payture.com',
         merchant_id: 'TestMerchant',
         password: '123456',
+        currency: 'RUB',
         timeout: 10,
         open_timeout: 5,
         logger: 'logger',

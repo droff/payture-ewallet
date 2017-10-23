@@ -25,7 +25,7 @@ module Payture::Ewallet
       private
 
       def money(value)
-        return value unless value && @currency
+        return if value.nil? || value == ''
 
         Money.new(value.to_i, @currency)
       end
