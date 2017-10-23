@@ -65,6 +65,14 @@ module Payture::Ewallet
       def compact_hash(hash)
         hash.select { |k, v| k && v }
       end
+
+      def encoded_cheque(data)
+        return unless data
+
+        json_data = JSON.generate(data)
+        encoded_data = Base64.encode64(json_data)
+        encoded_data.tr("\n", '').tr('=', '')
+      end
     end
   end
 end

@@ -19,10 +19,12 @@ module Payture::Ewallet
             VWUserPsw: user_password,
             IP: user_ip,
             PhoneNumber: optional[:user_phone],
+            CardId: optional[:card_id],
             OrderId: order_id,
             Amount: amount.cents,
             TemplateTag: optional[:template],
             Language: optional[:language],
+            Cheque: encoded_cheque(optional[:cheque]),
           ),
         }
       end

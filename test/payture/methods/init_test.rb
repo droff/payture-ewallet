@@ -49,4 +49,42 @@ describe Payture::Ewallet::Methods::Init do
     refute response.success?
     assert_nil response.session_id
   end
+
+  it 'with cheque' do
+    cheque = {
+      Positions: [
+        {
+          Quantity: 1.000,
+          Price: 100.00,
+          Tax: 6,
+          Text: 'Ticket',
+        },
+      ],
+      CheckClose: {
+        TaxationSystem: 0,
+      },
+      CustomerContact: 'user@gmail.com',
+      Message: 'Cheque',
+      AdditionalMessages: [
+        {
+          Key: 'param1',
+          Value: 'value1',
+        },
+      ],
+    }
+
+    response =
+      VCR.use_cassette('init_with_cheque') do
+        @client.init(
+          user_login: 'user@gmail.com',
+          user_password: 'user12345',
+          user_ip: '192.168.0.1',
+          order_id: 'order123',
+          amount: Money.new(100_00, 'RUB'),
+          cheque: cheque,
+        )
+      end
+
+    assert response.success?
+  end
 end

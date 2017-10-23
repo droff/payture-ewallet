@@ -16,7 +16,7 @@ module Payture::Ewallet
             Password: config.password,
             OrderId: order_id,
             Amount: amount.cents,
-            Cheque: cheque,
+            Cheque: encoded_cheque(cheque),
           ),
         }
       end
