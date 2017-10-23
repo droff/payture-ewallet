@@ -24,7 +24,7 @@ Or install it yourself as:
 
 ### Create client
 
-Required options is a `merchant_id` and `password`. You can get them from Payture tech support.
+Required options is a `host`, `merchant_id`, `password` and `currency`. You can get them from Payture tech support.
 
 ```ruby
 payture = Payture::Ewallet.client(
