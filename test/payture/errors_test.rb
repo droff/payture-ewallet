@@ -38,7 +38,8 @@ describe Payture::Ewallet::Error do
 
   it 'raises error when payture returns invalid body' do
     VCR.use_cassette('error_invalid_body') do
-      expected_message = 'MultiXml::ParseError: The document "This is not XML" does not have a valid root'
+      expected_message = 'MultiXml::ParseError: The document "This is not XML"'\
+                         ' does not have a valid root'
       assert_raises(Payture::Ewallet::Error, expected_message) do
         @client.charge(
           order_id: 'order123',

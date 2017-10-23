@@ -9,6 +9,7 @@ module Payture::Ewallet
         "#{config.base_url}/Init"
       end
 
+      # rubocop:disable Metrics/ParameterLists, Metrics/LineLength
       def params(user_login:, user_password:, user_ip:, order_id:, amount:, **optional)
         {
           VWID: config.merchant_id,

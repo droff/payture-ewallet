@@ -58,8 +58,8 @@ module Payture::Ewallet
       end
 
       def encoded_data(**params)
-        joined_params = compact_hash(params).map { |k, v| "#{k}=#{v}" }.join(';')
-        CGI.escape(joined_params)
+        params_str = compact_hash(params).map { |k, v| "#{k}=#{v}" }.join(';')
+        CGI.escape(params_str)
       end
 
       def compact_hash(hash)
