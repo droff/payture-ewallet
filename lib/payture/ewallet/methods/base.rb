@@ -25,7 +25,7 @@ module Payture::Ewallet
       end
 
       def response_class
-        Responses::Base
+        raise NotImplementedError
       end
 
       def make_request(url, params)
