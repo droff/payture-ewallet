@@ -32,6 +32,9 @@ Metrics/LineLength:
 Metrics/MethodLength:
   Max: 15
 
+Metrics/BlockLength:
+  Enabled: false
+
 Style/TrailingCommaInLiteral:
   EnforcedStyleForMultiline: comma
 
