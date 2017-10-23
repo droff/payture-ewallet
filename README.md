@@ -24,7 +24,7 @@ Or install it yourself as:
 
 ### Create client
 
-Required options is a `host`, `merchant_id`, `password` and `currency`. You can get them from Payture tech support.
+Required options are `host`, `merchant_id`, `password` and `currency`. You can get them from Payture tech support.
 
 ```ruby
 payture = Payture::Ewallet.client(
@@ -53,11 +53,20 @@ payture = Payture::Ewallet.client(
 
 ```ruby
 response = payture.init(
+  # required
   user_login: 'user@gmail.com',
   user_password: '12345',
   user_ip: '192.168.0.1',
   order_id: '123',
   amount: Money.new(100_00, 'RUB'),
+  # optional
+  user_phone: '+79201234567',
+  card_id: '123',
+  template: 'custom_tpl',
+  language: 'ru',
+  cheque: {
+    Positions: [...],
+  },
 )
 
 response.success?
@@ -84,7 +93,7 @@ payture.pay_url(session_id: '36a02faf-ae1b-443b-8fcc-188614390a91')
 => "https://sandbox.payture.com/vwapi/Pay?SessionId=36a02faf-ae1b-443b-8fcc-188614390a91"
 ```
 
-You need redirect user to this URL.
+You need to redirect user to this URL.
 
 ### Charge
 
@@ -92,8 +101,13 @@ After the user has paid, you can charge money from card:
 
 ```ruby
 response = payture.charge(
+  # required
   order_id: '123',
+  # optional
   amount: Money.new(100_00, 'RUB'),
+  cheque: {
+    Positions: [...],
+  },
 )
 
 response.success?
@@ -108,6 +122,7 @@ You also can unblock money if you don't need charge them:
 
 ```ruby
 response = payture.unblock(
+  # required
   order_id: '123',
   amount: Money.new(100_00, 'RUB'),
 )
@@ -124,8 +139,13 @@ If money already charged, you can refund them:
 
 ```ruby
 response = payture.refund(
+  # required
   order_id: '123',
   amount: Money.new(80_00, 'RUB'),
+  # optional
+  cheque: {
+    Positions: [...],
+  },
 )
 
 response.success?
