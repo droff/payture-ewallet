@@ -12,8 +12,10 @@ require 'payture/ewallet/error'
 require 'payture/ewallet/make_pay_url'
 require 'payture/ewallet/methods/base'
 require 'payture/ewallet/methods/init'
+require 'payture/ewallet/methods/pay_status'
 require 'payture/ewallet/responses/base'
 require 'payture/ewallet/responses/init'
+require 'payture/ewallet/responses/pay_status'
 
 module Payture
   module Ewallet
