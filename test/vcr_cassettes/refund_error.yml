@@ -1,0 +1,37 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://sandbox.payture.com/vwapi/Refund?DATA=Password%253Dmerchant12345%253BOrderId%253Dorder123%253BAmount%253D20000&VWID=TestMerchant
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.12.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 23 Oct 2017 10:02:53 GMT
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '101'
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: <Refund VWUserLgn="" OrderId="order123" Success="False" ErrCode="AMOUNT_ERROR"
+        />
+    http_version:
+  recorded_at: Mon, 23 Oct 2017 10:02:53 GMT
+recorded_with: VCR 2.9.3
