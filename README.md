@@ -1,8 +1,8 @@
 # Payture::Ewallet
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/payture/ewallet`. To experiment with that code, run `bin/console` for an interactive prompt.
+[![Build Status](https://travis-ci.org/busfor/payture-ewallet.svg?branch=master)](https://travis-ci.org/busfor/payture-ewallet)
 
-TODO: Delete this and the text above, and describe your gem
+Simple Ruby wrapper for [Payture eWallet API](http://payture.com/integration/api/#ewallet_).
 
 ## Installation
 
@@ -22,17 +22,138 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Create client
 
-## Development
+Required options is a `merchant_id` and `password`. You can get them from Payture tech support.
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```ruby
+payture = Payture::Ewallet.client(
+  merchant_id: 'TestMerchant',
+  password: '12345',
+)
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+You can also specify optional settings:
+
+```ruby
+payture = Payture::Ewallet.client(
+  merchant_id: 'TestMerchant',
+  password: '12345',
+  host: 'payture.com', # default is 'sandbox.payture.com'
+  currency: 'EUR',     # default is 'RUB'
+  timeout: 10,
+  open_timeout: 5,
+  logger: Logger.new,
+)
+```
+
+### Init payment
+
+```ruby
+response = payture.init(
+  user_login: 'user@gmail.com',
+  user_password: '12345',
+  user_ip: '192.168.0.1',
+  order_id: '123',
+  amount: Money.new(100_00, 'RUB'),
+)
+
+response.success?
+# => true
+response.session_id
+# => "36a02faf-ae1b-443b-8fcc-188614390a91"
+```
+
+If response has error:
+
+```ruby
+response.error?
+# => true
+response.error_code
+# => "DUPLICATE_ORDER_ID"
+```
+
+### Build payment URL
+
+`session_id` contains value from previous step.
+
+```ruby
+payture.pay_url(session_id: '36a02faf-ae1b-443b-8fcc-188614390a91')
+=> "https://sandbox.payture.com/vwapi/Pay?SessionId=36a02faf-ae1b-443b-8fcc-188614390a91"
+```
+
+You need redirect user to this URL.
+
+### Charge
+
+After the user has paid, you can charge money from card:
+
+```ruby
+response = payture.charge(
+  order_id: '123',
+  amount: Money.new(100_00, 'RUB'),
+)
+
+response.success?
+# => true
+response.charged_amount
+# => #<Money fractional:10000 currency:RUB>
+```
+
+### Unblock
+
+You also can unblock money if you don't need charge them:
+
+```ruby
+response = payture.unblock(
+  order_id: '123',
+  amount: Money.new(100_00, 'RUB'),
+)
+
+response.success?
+# => true
+response.actual_amount
+# => #<Money fractional:0 currency:RUB>
+```
+
+### Refund
+
+If money already charged, you can refund them:
+
+```ruby
+response = payture.refund(
+  order_id: '123',
+  amount: Money.new(80_00, 'RUB'),
+)
+
+response.success?
+# => true
+response.actual_amount
+# => #<Money fractional:2000 currency:RUB>
+```
+
+### Payment status
+
+For get actual payment status you can use method `pay_status`:
+
+```ruby
+response = payture.pay_status(order_id: '123')
+
+response.success?
+# => true
+response.status
+# => "Authorized"
+response.amount
+# => #<Money fractional:10000 currency:RUB>
+response.card_id
+# => "..."
+response.user_login
+# => "user@gmail.com"
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/Roman Khrebtov/payture-ewallet. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/busfor/payture-ewallet. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
