@@ -64,6 +64,7 @@ response = payture.init(
   card_id: '123',
   template: 'custom_tpl',
   language: 'ru',
+  return_url: 'https://myshop.com/order/123',
   cheque: {
     Positions: [...],
   },

@@ -24,6 +24,7 @@ module Payture::Ewallet
             Amount: amount.cents,
             TemplateTag: optional[:template],
             Language: optional[:language],
+            Url: optional[:return_url],
             Cheque: encoded_cheque(optional[:cheque]),
           ),
         }
