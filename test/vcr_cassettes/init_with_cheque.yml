@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://sandbox.payture.com/vwapi/Init?DATA=SessionType%253DBlock%253BVWUserLgn%253Duser%2540gmail.com%253BVWUserPsw%253Duser12345%253BIP%253D192.168.0.1%253BOrderId%253Dorder123%253BAmount%253D10000%253BCheque%253DeyJQb3NpdGlvbnMiOlt7IlF1YW50aXR5IjoxLjAsIlByaWNlIjoxMDAuMCwiVGF4Ijo2LCJUZXh0IjoiVGlja2V0In1dLCJDaGVja0Nsb3NlIjp7IlRheGF0aW9uU3lzdGVtIjowfSwiQ3VzdG9tZXJDb250YWN0IjoidXNlckBnbWFpbC5jb20iLCJNZXNzYWdlIjoiQ2hlcXVlIiwiQWRkaXRpb25hbE1lc3NhZ2VzIjpbeyJLZXkiOiJwYXJhbTEiLCJWYWx1ZSI6InZhbHVlMSJ9XX0&VWID=TestMerchant
+    uri: https://sandbox.payture.com/vwapi/Init?DATA=SessionType%253DBlock%253BVWUserLgn%253Duser%2540gmail.com%253BVWUserPsw%253Duser12345%253BIP%253D192.168.0.1%253BOrderId%253Dorder123%253BAmount%253D10000%253BCheque%253DeyJQb3NpdGlvbnMiOlt7IlF1YW50aXR5IjoxLjAsIlByaWNlIjoxMDAuMCwiVGF4Ijo2LCJUZXh0IjoiVGlja2V0In1dLCJDaGVja0Nsb3NlIjp7IlRheGF0aW9uU3lzdGVtIjowfSwiQ3VzdG9tZXJDb250YWN0IjoidXNlckBnbWFpbC5jb20iLCJNZXNzYWdlIjoiQ2hlcXVlIiwiQWRkaXRpb25hbE1lc3NhZ2VzIjpbeyJLZXkiOiJwYXJhbTEiLCJWYWx1ZSI6InZhbHVlMSJ9XX0%253D&VWID=TestMerchant
     body:
       encoding: US-ASCII
       string: ''

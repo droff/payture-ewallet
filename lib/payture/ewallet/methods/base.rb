@@ -70,8 +70,7 @@ module Payture::Ewallet
         return unless data
 
         json_data = JSON.generate(data)
-        encoded_data = Base64.encode64(json_data)
-        encoded_data.tr("\n", '').tr('=', '')
+        Base64.strict_encode64(json_data)
       end
     end
   end
