@@ -2,11 +2,11 @@
 
 module Payture::Ewallet
   module Methods
-    class Charge < Base
+    class MobilePay < Base
       private
 
       def url
-        "#{config.base_url}/MobilePay"
+        "api/MobilePay"
       end
 
       def params(order_id:, pay_token:, amount: nil, cheque: nil, mobile_subsystem:)

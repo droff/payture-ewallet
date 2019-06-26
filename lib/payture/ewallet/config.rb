@@ -21,6 +21,7 @@ module Payture::Ewallet
       @logger = options[:logger]
       @timeout = options[:timeout]
       @open_timeout = options[:open_timeout]
+      @key = options[:key]
 
       check_required_fields!
     end
