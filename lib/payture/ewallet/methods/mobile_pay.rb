@@ -6,7 +6,7 @@ module Payture::Ewallet
       private
 
       def url
-        "api/MobilePay"
+        "https://#{config.host}/api/MobilePay"
       end
 
       def params(order_id:, pay_token:, amount: nil, cheque: nil, mobile_subsystem:)
@@ -16,15 +16,12 @@ module Payture::Ewallet
           PayToken: Base64.strict_encode64(pay_token),
           OrderId: order_id,
           Key: config.key,
-          Cheque: encoded_cheque(cheque),
         }
 
-        if mobile_subsystem == :gpay
-          params[:Amount] = amount&.cents
-        end
+        params[:Cheque] = encoded_cheque(cheque) if cheque
 
-        if mobile_subsystem == :applepay
-          params[:Checksum] = true
+        if mobile_subsystem == :gpay
+          params[:Amount] = amount.cents
         end
 
         params

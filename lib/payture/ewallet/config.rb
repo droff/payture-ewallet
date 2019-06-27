@@ -10,6 +10,7 @@ module Payture::Ewallet
 
     # optional
     attr_reader :logger
+    attr_reader :key
     attr_reader :timeout
     attr_reader :open_timeout
 
@@ -33,7 +34,7 @@ module Payture::Ewallet
     private
 
     def check_required_fields!
-      unless host && merchant_id && password && currency
+      unless host && ( merchant_id || key ) && password && currency
         raise ArgumentError,
           'Required options: host, merchant_id, password, currency'
       end
