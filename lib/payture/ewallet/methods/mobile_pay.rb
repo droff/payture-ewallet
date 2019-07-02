@@ -28,7 +28,7 @@ module Payture::Ewallet
       end
 
       def response_class
-        Responses::Charge
+        Responses::MobilePay
       end
     end
   end
