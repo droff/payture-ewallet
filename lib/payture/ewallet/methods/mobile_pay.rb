@@ -10,12 +10,12 @@ module Payture::Ewallet
       end
 
       def params(order_id:, pay_token:, amount: nil, cheque: nil, mobile_subsystem:)
-        raise unless mobile_subsystem.in? %i(gpay applepay)
+        raise(Error, "Only GPay and ApplePay systems allowed") unless mobile_subsystem.in? %i(gpay applepay)
 
         params = {
           PayToken: Base64.strict_encode64(pay_token),
           OrderId: order_id,
-          Key: config.key,
+          Key: ( config.key || config.merchant_id ),
         }
 
         params[:Cheque] = encoded_cheque(cheque) if cheque

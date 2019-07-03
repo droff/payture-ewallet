@@ -36,7 +36,7 @@ module Payture::Ewallet
     def check_required_fields!
       unless host && ( merchant_id || key ) && password && currency
         raise ArgumentError,
-          'Required options: host, merchant_id, password, currency'
+          'Required options: host, (merchant_id|key), password, currency'
       end
     end
   end
