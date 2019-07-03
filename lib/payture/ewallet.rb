@@ -22,6 +22,7 @@ require 'payture/ewallet/responses/init'
 require 'payture/ewallet/responses/charge'
 require 'payture/ewallet/responses/refund'
 require 'payture/ewallet/responses/pay_status'
+require 'payture/ewallet/responses/mobile_pay'
 
 module Payture
   module Ewallet
