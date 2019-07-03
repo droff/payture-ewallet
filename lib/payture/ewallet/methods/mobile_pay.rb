@@ -20,7 +20,7 @@ module Payture::Ewallet
 
         params[:Cheque] = encoded_cheque(cheque) if cheque
 
-        if mobile_subsystem == :gpay
+        if mobile_subsystem == 'gpay'
           params[:Amount] = amount.cents
         end
 
