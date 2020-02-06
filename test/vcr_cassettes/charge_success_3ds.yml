@@ -30,8 +30,9 @@ http_interactions:
       - keep-alive
     body:
       encoding: ASCII-8BIT
-      string: <Charge Success="3DS" OrderId="order123" Amount="10000" MD="MD" PaReq="PaReq" AcsUrl="AcsUrl" />
+      string: <Charge Success="3DS" OrderId="order123" Amount="10000" ACSUrl="AcsUrl" ThreeDSKey="MD" PaReq="PaReq" />
     http_version:
   recorded_at: Mon, 23 Oct 2017 09:34:09 GMT
 recorded_with: VCR 2.9.3
+
 

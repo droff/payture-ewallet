@@ -49,11 +49,10 @@ describe Payture::Ewallet::Methods::Charge do
       VCR.use_cassette('charge_success_3ds') do
         @client.charge(
           order_id: 'order123',
-          amount: Money.new(200_00, 'RUB'),
+          amount: Money.new(100_00, 'RUB'),
         )
       end
 
-    refute response.error?
     refute response.success?
     assert response.required_3ds?
 
