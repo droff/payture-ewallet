@@ -43,4 +43,22 @@ describe Payture::Ewallet::Methods::Charge do
     refute response.success?
     assert_nil response.charged_amount
   end
+
+  it 'returns 3ds params if 3ds needed' do
+    response =
+      VCR.use_cassette('charge_success_3ds') do
+        @client.charge(
+          order_id: 'order123',
+          amount: Money.new(200_00, 'RUB'),
+        )
+      end
+
+    refute response.error?
+    refute response.success?
+    assert response.required_3ds?
+
+    assert_equal 'MD', response.md
+    assert_equal 'PaReq', response.pa_req
+    assert_equal 'AcsUrl', response.acs_url
+  end
 end
