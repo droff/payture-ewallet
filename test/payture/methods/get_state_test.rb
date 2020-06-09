@@ -38,6 +38,6 @@ describe Payture::Ewallet::Methods::GetState do
     refute response.success?
     assert_nil response.status
     assert_nil response.card_id
-    assert_equal nil, response.user_login
+    assert_nil response.user_login
   end
 end
