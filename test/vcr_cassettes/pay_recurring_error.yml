@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://sandbox.payture.com/vwapi/Pay?DATA=VWUserLgn%253D123%2540ya.ru%253BVWUserPsw%253D2645363%253BCardId%253D8f8939c6-4414-464f-c451-6e9317244b22%253BOrderId%253Da24573b7-a1c8-9725-6092-053c2d7d4d70%253BAmount%253D12611%253BSessionType%253DPay&VWID=TestMerchant
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.3
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 09 Jun 2020 07:42:18 GMT
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '172'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: <Pay VWUserLgn="123@ya.ru" OrderId="a24573b7-a1c8-9725-6092-053c2d7d4d70"
+        MerchantOrderId="a24573b7-a1c8-9725-6092-053c2d7d4d70" Success="False" ErrCode="CARD_NOT_FOUND"
+        />
+    http_version: 
+  recorded_at: Tue, 09 Jun 2020 07:42:18 GMT
+recorded_with: VCR 2.9.3

@@ -16,11 +16,13 @@ require 'payture/ewallet/methods/charge'
 require 'payture/ewallet/methods/unblock'
 require 'payture/ewallet/methods/refund'
 require 'payture/ewallet/methods/pay_status'
+require 'payture/ewallet/methods/pay_recurring'
 require 'payture/ewallet/responses/base'
 require 'payture/ewallet/responses/init'
 require 'payture/ewallet/responses/charge'
 require 'payture/ewallet/responses/refund'
 require 'payture/ewallet/responses/pay_status'
+require 'payture/ewallet/responses/pay_recurring'
 
 module Payture
   module Ewallet

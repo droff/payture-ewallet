@@ -31,5 +31,9 @@ module Payture::Ewallet
     def pay_status(**args)
       Methods::PayStatus.new(config).call(**args)
     end
+
+    def pay_recurring(**args)
+      Methods::PayRecurring.new(config).call(**args)
+    end
   end
 end
