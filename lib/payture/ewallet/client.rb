@@ -31,5 +31,9 @@ module Payture::Ewallet
     def pay_status(**args)
       Methods::PayStatus.new(config).call(**args)
     end
+
+    def get_state(**args)
+      Methods::GetState.new(config).call(**args)
+    end
   end
 end

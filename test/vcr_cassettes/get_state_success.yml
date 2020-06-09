@@ -1,0 +1,39 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://sandbox.payture.com/vwapi/GetState?Key=TestMerchant&OrderId=order123
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.3
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 08 Jun 2020 10:29:27 GMT
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '131'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: <GetState Success="True" OrderId="a24573b7-a1c8-9725-6092-053c2d7d4d70" 
+        State="Refunded" Forwarded="False" MerchantContract="Merchant" Amount="12611" 
+        RRN="003770024290" VWUserLgn="123@ya.ru" 
+        CardId="f224dd93-ac8c-3025-65dd-963c5b3fc0cc" PANMask="521885xxxxxx5484"/>
+    http_version: 
+  recorded_at: Mon, 08 Jun 2020 10:29:27 GMT
+recorded_with: VCR 2.9.3
