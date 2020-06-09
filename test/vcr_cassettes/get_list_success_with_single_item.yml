@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://sandbox.payture.com/vwapi/GetList?DATA=VWUserLgn%253D123%2540ya.ru%253BVWUserPsw%253D2645363&VWID=TestMerchant
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.3
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 09 Jun 2020 09:51:14 GMT
+      Content-Type:
+      - text/xml; charset=utf-8
+      Content-Length:
+      - '48'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: <GetList Success="True" VWUserLgn="123@ya.ru">
+          <Item CardName="411111xxxxxx1111" CardId="001f2def-64e9-4cef-ae02-aa2bd9508a8b" 
+            CardHolder="Ivan Ivanov" Status="NotActive" NoCVV="true" Expired="false" 
+            ExpMonth="12" ExpYear="2022" PaymentSystem="Visa">
+              <Param Key="LastSuccess" Value="2014.06.24 12:42:14"/>
+              <Param Key="LastLessSecureCode:VWMerchantTest" Value="True"/>
+          </Item>
+        </GetList>
+    http_version: 
+  recorded_at: Tue, 09 Jun 2020 09:51:14 GMT
+recorded_with: VCR 2.9.3
