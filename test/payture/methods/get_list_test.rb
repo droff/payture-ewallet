@@ -43,6 +43,21 @@ describe Payture::Ewallet::Methods::GetList do
     assert_nil response.error_code
   end
 
+  it 'returns success response with single item' do
+    response =
+      VCR.use_cassette('get_list_success_with_single_item') do
+        @client.get_list(user_login: '123@ya.ru', password: '2645363')
+      end
+
+    assert response.success?
+    assert_equal '123@ya.ru', response.user_login
+    assert_equal 1, response.items.count
+    assert_nil response.active_item
+
+    refute response.error?
+    assert_nil response.error_code
+  end
+
   it 'returns error response' do
     response =
       VCR.use_cassette('get_list_error') do

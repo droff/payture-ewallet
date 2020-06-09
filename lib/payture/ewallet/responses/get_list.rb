@@ -8,7 +8,10 @@ module Payture::Ewallet
       end
 
       def items
-        body['Item'] || []
+        item = body['Item']
+        return [item] if item.is_a?(Hash)
+
+        item || []
       end
 
       def status
