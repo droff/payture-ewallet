@@ -18,6 +18,7 @@ require 'payture/ewallet/methods/refund'
 require 'payture/ewallet/methods/pay_status'
 require 'payture/ewallet/methods/get_state'
 require 'payture/ewallet/methods/get_list'
+require 'payture/ewallet/methods/pay_recurring'
 require 'payture/ewallet/responses/base'
 require 'payture/ewallet/responses/init'
 require 'payture/ewallet/responses/charge'
@@ -25,6 +26,7 @@ require 'payture/ewallet/responses/refund'
 require 'payture/ewallet/responses/pay_status'
 require 'payture/ewallet/responses/get_state'
 require 'payture/ewallet/responses/get_list'
+require 'payture/ewallet/responses/pay_recurring'
 
 module Payture
   module Ewallet
