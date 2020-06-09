@@ -35,5 +35,9 @@ module Payture::Ewallet
     def get_state(**args)
       Methods::GetState.new(config).call(**args)
     end
+
+    def get_list(**args)
+      Methods::GetList.new(config).call(**args)
+    end
   end
 end
